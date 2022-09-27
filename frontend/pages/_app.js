@@ -1,6 +1,7 @@
 import React from "react";
 import App from "next/app";
 import Head from "next/head";
+import Layout from "../components/Layout";
 import "../styles/globals.css";
 
 export default class MyApp extends App {
@@ -9,7 +10,9 @@ export default class MyApp extends App {
     return (
       <>
         <Head></Head>
-        <Component {...pageProps} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </>
     );
   }
