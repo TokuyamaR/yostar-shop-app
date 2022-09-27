@@ -1,14 +1,18 @@
 import React from "react";
 import App from "next/app";
 import Head from "next/head";
+import Layout from "../components/Layout";
+import "../styles/globals.css";
 
 export default class MyApp extends App {
   render() {
-    const { Componet, pageProps } = this.props;
+    const { Component, pageProps } = this.props;
     return (
       <>
         <Head></Head>
-        <Comonent {...pageProps} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </>
     );
   }
