@@ -4,28 +4,30 @@
   "info": {
     "singularName": "yostar-goods",
     "pluralName": "yostar-goods-plural",
-    "displayName": "Yostar Goods"
+    "displayName": "Yostar Goods",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "shop_name": {
+    "shopName": {
       "type": "string"
     },
     "description": {
       "type": "richtext"
     },
     "shopImage": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
     }
   }
 }
