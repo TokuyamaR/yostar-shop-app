@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "yostar_goods_plural",
+  "info": {
+    "singularName": "yostar-goods",
+    "pluralName": "yostar-goods-plural",
+    "displayName": "Yostar Goods"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "shop_name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "shopImage": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}
