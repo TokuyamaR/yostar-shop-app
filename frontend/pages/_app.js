@@ -3,7 +3,7 @@ import App from "next/app";
 import Head from "next/head";
 import Layout from "../components/Layout";
 import "../styles/globals.css";
-import withData from "../lib/apollo";
+import withApollo from "../lib/apollo";
 
 class MyApp extends App {
   render() {
@@ -19,4 +19,4 @@ class MyApp extends App {
   }
 }
 
-export default withData(MyApp);
+export default withApollo({ ssr: true })(MyApp);
