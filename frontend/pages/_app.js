@@ -3,8 +3,9 @@ import App from "next/app";
 import Head from "next/head";
 import Layout from "../components/Layout";
 import "../styles/globals.css";
+import width from "../lib/apollo";
 
-export default class MyApp extends App {
+class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props;
     return (
@@ -17,3 +18,5 @@ export default class MyApp extends App {
     );
   }
 }
+
+export default withData(MyApp);
