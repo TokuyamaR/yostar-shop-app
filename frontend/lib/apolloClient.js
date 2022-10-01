@@ -1,4 +1,4 @@
-import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import { ApolloClient, InMemoryCache } from "@apollo/client";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:1337";
 
