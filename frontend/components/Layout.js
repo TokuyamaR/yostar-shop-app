@@ -7,15 +7,15 @@ const Layout = (props) => {
   return (
     <div>
       <Head>
-        <title>Foody!</title>
+        <title>Yostar Shop</title>
       </Head>
       <header>
-        <nav className="p-4 w-full bg-slate-600">
-          <div className="flex justify-between items-center">
+        <nav className="w-full p-4 bg-slate-600">
+          <div className="flex items-center justify-between">
             <Link href="/">
-              <a className="text-2xl text-red-300">Foody!</a>
+              <a className="text-2xl text-red-300">Yostar Shop</a>
             </Link>
-            <ul className="flex flex-row gap-x-4 ml-auto text-white">
+            <ul className="flex flex-row ml-auto text-white gap-x-4">
               <li>
                 <Link href="/">
                   <a className="hover:underline">ログイン</a>

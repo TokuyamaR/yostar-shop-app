@@ -1,6 +1,16 @@
+import ShopList from "../components/shopList";
+
 function HomePage() {
   return (
-    <div className="text-3xl font-bold underline">Welcome to Next.js!</div>
+    <div>
+      <div>
+        <button type="submit">探す</button>
+        <input type="text" />
+      </div>
+      <div>
+        <ShopList />
+      </div>
+    </div>
   );
 }
 
