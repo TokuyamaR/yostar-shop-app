@@ -1,33 +1,31 @@
 {
   "kind": "collectionType",
-  "collectionName": "yostar_goods_plural",
+  "collectionName": "yostar_shops",
   "info": {
-    "singularName": "yostar-goods",
-    "pluralName": "yostar-goods-plural",
-    "displayName": "Yostar Goods",
-    "description": ""
+    "singularName": "yostar-shop",
+    "pluralName": "yostar-shops",
+    "displayName": "YostarShop"
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "shopName": {
+    "name": {
       "type": "string"
     },
     "description": {
       "type": "richtext"
     },
-    "shopImage": {
-      "type": "media",
-      "multiple": true,
-      "required": false,
+    "image": {
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ]
+      ],
+      "type": "media",
+      "multiple": true
     }
   }
 }
