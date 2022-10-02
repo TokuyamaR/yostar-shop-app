@@ -22,13 +22,24 @@ const query = gql`
   }
 `;
 
-const ShopList = () => {
+export const ShopList = () => {
   const { loading, error, data } = useQuery(query);
-  return (
-    <div className="grid grid-cols-3">
-      <Card />
-    </div>
-  );
+
+  if (loading) {
+    return;
+  }
+
+  if (data) {
+    return (
+      <div className="grid grid-cols-3">
+        {data.yostarShops.data.map((shop) => (
+          <Card key={shop.id} data={shop} />
+        ))}
+      </div>
+    );
+  } else {
+    return <div className="grid grid-cols-3">お店の登録がありません。</div>;
+  }
 };
 
 export default ShopList;
