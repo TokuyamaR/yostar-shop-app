@@ -1,6 +1,5 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:1337";
+import { API_URL } from "../config";
 
 const cache = new InMemoryCache();
 
