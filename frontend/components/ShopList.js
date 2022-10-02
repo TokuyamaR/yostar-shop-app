@@ -22,7 +22,7 @@ const query = gql`
   }
 `;
 
-export const ShopList = () => {
+export const ShopList = (props) => {
   const { loading, error, data } = useQuery(query);
 
   if (loading) {
@@ -30,15 +30,18 @@ export const ShopList = () => {
   }
 
   if (data) {
+    const filteredShops = data.yostarShops.data.filter((shop) =>
+      shop.attributes.name.toLowerCase().includes(props.search)
+    );
     return (
-      <div className="grid grid-cols-3">
-        {data.yostarShops.data.map((shop) => (
+      <div className="grid grid-cols-3 gap-4">
+        {filteredShops.map((shop) => (
           <Card key={shop.id} data={shop} />
         ))}
       </div>
     );
   } else {
-    return <div className="grid grid-cols-3">お店の登録がありません。</div>;
+    return <h2 className="text-2xl font-bold">お店の登録がありません。</h2>;
   }
 };
 
