@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * yostar-shop service
+ * shop service
  */
 
 const { createCoreService } = require('@strapi/strapi').factories;
 
-module.exports = createCoreService('api::yostar-shop.yostar-shop');
+module.exports = createCoreService('api::shop.shop');

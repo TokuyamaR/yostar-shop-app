@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * yostar-shop router
+ * item router
  */
 
 const { createCoreRouter } = require('@strapi/strapi').factories;
 
-module.exports = createCoreRouter('api::yostar-shop.yostar-shop');
+module.exports = createCoreRouter('api::item.item');
