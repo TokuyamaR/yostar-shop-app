@@ -4,7 +4,7 @@
   "info": {
     "singularName": "item",
     "pluralName": "items",
-    "displayName": "items",
+    "displayName": "item",
     "description": ""
   },
   "options": {
@@ -20,7 +20,7 @@
     },
     "image": {
       "type": "media",
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "allowedTypes": [
         "images",
