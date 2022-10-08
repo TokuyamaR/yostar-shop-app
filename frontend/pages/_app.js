@@ -1,6 +1,5 @@
-import React from "react";
 import Head from "next/head";
-import Layout from "../components/Layout";
+import { Layout } from "../components/Layout";
 import "../styles/globals.css";
 import createApolloClient from "../lib/apolloClient";
 import { ApolloProvider } from "@apollo/client";

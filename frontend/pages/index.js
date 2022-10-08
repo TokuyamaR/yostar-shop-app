@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ShopList from "../components/shopList";
+import { ShopList } from "../components/shopList";
 
 function HomePage() {
   const [searchWord, setSearchWord] = useState("");
@@ -15,7 +15,7 @@ function HomePage() {
         />
         <button
           type="submit"
-          className="w-24 p-2 text-white bg-blue-600 rounded"
+          className="w-24 p-2 text-white bg-blue-600 rounded hover:opacity-80"
           onClick={() => setSearchWord(searchWord.toLocaleLowerCase())}
         >
           探す

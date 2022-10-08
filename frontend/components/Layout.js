@@ -1,9 +1,7 @@
-import React from "react";
-import App from "next/app";
 import Head from "next/head";
 import Link from "next/link";
 
-const Layout = (props) => {
+export const Layout = (props) => {
   return (
     <div>
       <Head>
@@ -22,7 +20,7 @@ const Layout = (props) => {
                 </Link>
               </li>
               <li>
-                <Link href="/">
+                <Link href="/register">
                   <a className="hover:underline">新規登録</a>
                 </Link>
               </li>
@@ -34,5 +32,3 @@ const Layout = (props) => {
     </div>
   );
 };
-
-export default Layout;
