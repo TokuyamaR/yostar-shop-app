@@ -2,11 +2,28 @@ import { gql, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 
 const GET_SHOP_ITEMS = gql`
-  query Shop($id: ID!) {
-    items(id: $id) {
+  query ($id: ID!) {
+    shop(id: $id) {
       data {
+        id
         attributes {
-          name
+          items {
+            data {
+              id
+              attributes {
+                name
+                description
+                price
+                image {
+                  data {
+                    attributes {
+                      url
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }
