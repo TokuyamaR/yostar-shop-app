@@ -39,7 +39,7 @@ export const ShopList = (props) => {
     return (
       <div className="grid grid-cols-3 gap-4">
         {filteredShops.map((shop) => (
-          <Card key={shop.id} data={shop} />
+          <Card key={shop.id} data={shop} linkText="もっとみる" path="/shops" />
         ))}
       </div>
     );
@@ -47,5 +47,3 @@ export const ShopList = (props) => {
     return <h2 className="text-2xl font-bold">お店の登録がありません。</h2>;
   }
 };
-
-export default ShopList;

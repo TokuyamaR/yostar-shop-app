@@ -30,7 +30,7 @@ const Layout = (props) => {
           </div>
         </nav>
       </header>
-      <div className="mt-4">{props.children}</div>
+      <div className="p-8">{props.children}</div>
     </div>
   );
 };

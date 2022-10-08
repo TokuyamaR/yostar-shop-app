@@ -1,5 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
+import { Card } from "../components/Card";
 
 const GET_SHOP_ITEMS = gql`
   query ($id: ID!) {
@@ -7,6 +8,7 @@ const GET_SHOP_ITEMS = gql`
       data {
         id
         attributes {
+          name
           items {
             data {
               id
@@ -44,22 +46,29 @@ export const Shops = (props) => {
   if (loading) {
     return <h1>読み込み中です...</h1>;
   }
-  return <h2 className="text-2xl font-bold">商品の登録がありません。</h2>;
 
-  // if (data) {
-  //   const filteredShops = data.shops.data.filter((shop) =>
-  //     shop.attributes.name.toLowerCase().includes(props.search)
-  //   );
-  //   return (
-  //     <div className="grid grid-cols-3 gap-4">
-  //       {filteredShops.map((shop) => (
-  //         <Card key={shop.id} data={shop} />
-  //       ))}
-  //     </div>
-  //   );
-  // } else {
-  // return <h2 className="text-2xl font-bold">お店の登録がありません。</h2>;
-  // }
+  if (data) {
+    const shopName = data.shop.data.attributes.name;
+    const items = data.shop.data.attributes.items.data;
+
+    return (
+      <div className="space-y-4">
+        <h1 className="text-3xl font-bold">{shopName}</h1>
+        <div className="grid grid-cols-3 gap-4">
+          {items.map((item) => (
+            <Card
+              key={item.id}
+              data={item}
+              linkText="カートに入れる"
+              path="/items"
+            />
+          ))}
+        </div>
+      </div>
+    );
+  } else {
+    return <h2 className="text-2xl font-bold">商品の登録がありません。</h2>;
+  }
 };
 
 export default Shops;
