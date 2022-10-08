@@ -3,9 +3,9 @@ import Link from "next/link";
 const Register = () => {
   return (
     <div className="space-y-4">
-      <h2 className="text-2xl">ユーザー登録</h2>
       <section>
-        <form className="flex flex-col w-1/2 space-y-4">
+        <form className="flex flex-col w-2/5 m-auto space-y-4">
+          <h2 className="text-2xl text-center">ユーザー登録</h2>
           <label className="flex flex-col">
             <span>ユーザー名</span>
             <input
