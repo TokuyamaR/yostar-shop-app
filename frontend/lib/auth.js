@@ -8,12 +8,12 @@ export const registerUser = async (username, email, password) => {
       email,
       password,
     })
-    .then((res) => {
-      console.log("post成功");
-      console.log("ユーザー　プロフィール", res.data.user);
-      console.log("ユーザー　トークン", res.data.jwt);
+    .then((response) => {
+      console.log("POST成功");
+      console.log("登録内容：", response.data.user);
+      console.log("トークン：", response.data.jwt);
     })
     .catch((error) => {
-      console.log("エラー内容", error.response);
+      console.log("エラー発生：", error.response);
     });
 };
