@@ -18,7 +18,7 @@ const Register = () => {
   return (
     <div className="space-y-4">
       <section>
-        <form className="flex flex-col w-2/5 m-auto space-y-4">
+        <div className="flex flex-col w-2/5 m-auto space-y-4">
           <h2 className="text-2xl text-center">ユーザー登録</h2>
           <label className="flex flex-col">
             <span>ユーザー名</span>
@@ -63,7 +63,7 @@ const Register = () => {
               送信
             </button>
           </div>
-        </form>
+        </div>
       </section>
     </div>
   );
