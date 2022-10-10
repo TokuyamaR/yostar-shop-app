@@ -7,6 +7,15 @@ const Login = () => {
   const [data, setData] = useState({ identifier: "", password: "" });
   const appContext = useContext(AppContext);
 
+  const handleLogin = () => {
+    login(data.identifier, data.password)
+      .then((response) => {
+        console.log("ユーザー登録成功：", response.data.user);
+        appContext.setUser(response.data.user);
+      })
+      .catch((error) => console.log("エラー内容：", error.response));
+  };
+
   const handleChange = (event) => {
     setData({ ...data, [event.target.name]: event.target.value });
   };
@@ -44,6 +53,7 @@ const Login = () => {
             <button
               type="submit"
               className="w-24 p-2 text-white bg-blue-600 rounded hover:opacity-80"
+              onClick={() => handleLogin()}
             >
               ログイン
             </button>
