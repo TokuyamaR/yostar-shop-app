@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import AppContext from "../context/AppContext";
 import Link from "next/link";
-import { registerUser } from "../lib/auth";
+import { login } from "../lib/auth";
 
 const Login = () => {
   const [data, setData] = useState({ identifier: "", password: "" });
@@ -10,7 +10,7 @@ const Login = () => {
   const handleLogin = () => {
     login(data.identifier, data.password)
       .then((response) => {
-        console.log("ユーザー登録成功：", response.data.user);
+        console.log("ログイン成功：", response.data.user);
         appContext.setUser(response.data.user);
       })
       .catch((error) => console.log("エラー内容：", error.response));
