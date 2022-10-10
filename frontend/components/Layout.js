@@ -30,21 +30,14 @@ export const Layout = (props) => {
                 </li>
               ) : (
                 <li>
-                  <Link href="/">
+                  <Link href="/login">
                     <a className="hover:underline">ログイン</a>
                   </Link>
                 </li>
               )}
               {user ? (
                 <li>
-                  <Link href="/">
-                    <a
-                      className="hover:underline"
-                      onClick={() => setUser(null)}
-                    >
-                      {user.username}
-                    </a>
-                  </Link>
+                  <h3 className="font-bold text-white">{user.username}</h3>
                 </li>
               ) : (
                 <li>
