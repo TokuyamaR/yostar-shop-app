@@ -37,6 +37,7 @@ export const login = (identifier, password) => {
         window.location.href = "/";
       })
       .catch((error) => {
+        console.log("POST成失敗");
         reject(error);
         console.log("エラー発生：", error.response);
       });
