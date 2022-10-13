@@ -4,7 +4,7 @@ import { Layout } from "../components/Layout";
 import "../styles/globals.css";
 import createApolloClient from "../lib/apolloClient";
 import { ApolloProvider } from "@apollo/client";
-import AppContext from "../context/AppContext";
+import { AppContext } from "../context/AppContext";
 import Cookies from "js-cookie";
 import { API_URL } from "../config";
 import axios from "axios";
@@ -33,19 +33,19 @@ export default function App({ Component, pageProps }) {
   useEffect(() => {
     const token = Cookies.get("token");
     if (token) {
-      axios
-        .get(`${API_URL}/users/me`, {
-          headers: { Authorization: "Bearer " + token },
-        })
+      fetch(`${API_URL}/api/users/me`, {
+        headers: { Authorization: "Bearer " + token },
+      })
         .then(async (response) => {
           if (!response.ok) {
-            console.log("response NG");
+            console.log("response NG:", response);
             Cookies.remove("token");
             setUser(null);
             return null;
           }
           console.log("response OK");
-          setUser(await response.json());
+          const res = await response.json();
+          setUser(res);
         })
         .catch((error) => {
           console.log(error.message);
