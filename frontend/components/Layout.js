@@ -1,10 +1,11 @@
 import Head from "next/head";
 import Link from "next/link";
 import { useContext } from "react";
-import AppContext from "../context/AppContext";
+import { AppContext } from "../context/AppContext";
 
 export const Layout = (props) => {
   const [user, setUser] = useContext(AppContext);
+  console.log("user:", user);
   return (
     <div>
       <Head>
