@@ -9,23 +9,6 @@ import Cookies from "js-cookie";
 import { API_URL } from "../config";
 import axios from "axios";
 
-// ====== next/app を利用したpageの表示 ======
-// import App from "next/app";
-// export default class MyApp extends App {
-//   render() {
-//     const { Component, pageProps } = this.props;
-//     return (
-//       <>
-//         <Head></Head>
-//         <Layout>
-//           <Component {...pageProps} />
-//         </Layout>
-//       </>
-//     );
-//   }
-// }
-
-// ====== apolloを利用したpageの表示 ======
 export default function App({ Component, pageProps }) {
   const [user, setUser] = useState(null);
   const client = createApolloClient();
@@ -45,6 +28,7 @@ export default function App({ Component, pageProps }) {
           }
           console.log("response OK");
           const res = await response.json();
+          console.log(res);
           setUser(res);
         })
         .catch((error) => {
