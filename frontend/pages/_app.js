@@ -7,7 +7,6 @@ import { ApolloProvider } from "@apollo/client";
 import { AppContext } from "../context/AppContext";
 import Cookies from "js-cookie";
 import { API_URL } from "../config";
-import axios from "axios";
 
 export default function App({ Component, pageProps }) {
   const [user, setUser] = useState(null);
