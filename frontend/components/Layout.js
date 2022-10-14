@@ -4,8 +4,7 @@ import { useContext } from "react";
 import { AppContext } from "../context/AppContext";
 
 export const Layout = (props) => {
-  const [user, setUser] = useContext(AppContext);
-  console.log("user:", user);
+  const { user, setUser } = useContext(AppContext);
   return (
     <div>
       <Head>
