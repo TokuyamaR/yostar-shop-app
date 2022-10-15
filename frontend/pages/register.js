@@ -10,10 +10,9 @@ const Register = () => {
   const handleRegister = () => {
     registerUser(data.username, data.email, data.password)
       .then((response) => {
-        console.log("ユーザー登録成功：", response.data.user);
         appContext.setUser(response.data.user);
       })
-      .catch((error) => console.log("エラー内容：", error.response));
+      .catch((error) => alert("handleRegister：", error.response));
   };
   return (
     <div className="space-y-4">

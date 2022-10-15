@@ -20,18 +20,15 @@ export default function App({ Component, pageProps }) {
       })
         .then(async (response) => {
           if (!response.ok) {
-            console.log("response NG:", response);
             Cookies.remove("token");
             setUser(null);
             return null;
           }
-          console.log("response OK");
           const res = await response.json();
-          console.log(res);
           setUser(res);
         })
         .catch((error) => {
-          console.log(error.message);
+          alert("App useEffect:", error.message);
         });
     }
   }, []);

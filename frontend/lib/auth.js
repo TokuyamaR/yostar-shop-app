@@ -11,14 +11,13 @@ export const registerUser = (username, email, password) => {
         password,
       })
       .then((response) => {
-        console.log("POST成功");
         Cookies.set("token", response.data.jwt, { expires: 7 });
         resolve(response);
         window.location.href = "/";
       })
       .catch((error) => {
         reject(error);
-        console.log("エラー発生：", error.response);
+        alert("registerUser:", error.response);
       });
   });
 };
@@ -31,15 +30,13 @@ export const login = (identifier, password) => {
         password,
       })
       .then((response) => {
-        console.log("POST成功");
         Cookies.set("token", response.data.jwt, { expires: 7 });
         resolve(response);
         window.location.href = "/";
       })
       .catch((error) => {
-        console.log("POST成失敗");
         reject(error);
-        console.log("エラー発生：", error.response);
+        alert("login:", error.response);
       });
   });
 };
