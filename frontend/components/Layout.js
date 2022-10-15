@@ -2,6 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useContext } from "react";
 import { AppContext } from "../context/AppContext";
+import { logout } from "../lib/auth";
 
 export const Layout = (props) => {
   const { user, setUser } = useContext(AppContext);
@@ -20,10 +21,7 @@ export const Layout = (props) => {
               {user ? (
                 <li>
                   <Link href="/">
-                    <a
-                      className="hover:underline"
-                      onClick={() => setUser(null)}
-                    >
+                    <a className="hover:underline" onClick={logout}>
                       ログアウト
                     </a>
                   </Link>
