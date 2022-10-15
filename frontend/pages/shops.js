@@ -32,13 +32,12 @@ const GET_SHOP_ITEMS = gql`
   }
 `;
 
-export const Shops = (props) => {
+const Shops = (props) => {
   const router = useRouter();
 
   const { loading, error, data } = useQuery(GET_SHOP_ITEMS, {
     variables: { id: router.query.id },
   });
-  console.log(data);
 
   if (error) {
     return <h1>データの読み込みに失敗しました。</h1>;

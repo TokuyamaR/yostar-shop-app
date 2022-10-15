@@ -1,9 +1,11 @@
-import React from "react";
-import App from "next/app";
 import Head from "next/head";
 import Link from "next/link";
+import { useContext } from "react";
+import { AppContext } from "../context/AppContext";
+import { logout } from "../lib/auth";
 
-const Layout = (props) => {
+export const Layout = (props) => {
+  const { user, setUser } = useContext(AppContext);
   return (
     <div>
       <Head>
@@ -16,16 +18,32 @@ const Layout = (props) => {
               <a className="text-2xl text-red-300">Yostar Shop</a>
             </Link>
             <ul className="flex flex-row ml-auto text-white gap-x-4">
-              <li>
-                <Link href="/">
-                  <a className="hover:underline">ログイン</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/">
-                  <a className="hover:underline">新規登録</a>
-                </Link>
-              </li>
+              {user ? (
+                <li>
+                  <Link href="/">
+                    <a className="hover:underline" onClick={logout}>
+                      ログアウト
+                    </a>
+                  </Link>
+                </li>
+              ) : (
+                <li>
+                  <Link href="/login">
+                    <a className="hover:underline">ログイン</a>
+                  </Link>
+                </li>
+              )}
+              {user ? (
+                <li>
+                  <h3 className="font-bold text-white">{user.username}</h3>
+                </li>
+              ) : (
+                <li>
+                  <Link href="/register">
+                    <a className="hover:underline">新規登録</a>
+                  </Link>
+                </li>
+              )}
             </ul>
           </div>
         </nav>
@@ -34,5 +52,3 @@ const Layout = (props) => {
     </div>
   );
 };
-
-export default Layout;
