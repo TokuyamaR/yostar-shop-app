@@ -1,0 +1,12 @@
+name: frontend-ci
+on: push
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: install frontend packages
+        run: cd frontend/ && npm install
+      - name: lint frontend
+        run: cd frontend/ && npm run lint
