@@ -1,7 +1,7 @@
+/* eslint-disable @next/next/no-img-element */
 import { API_URL } from "../config";
 import RightArrow from "../public/images/arrow-right.svg";
 import Link from "next/link";
-import Image from "next/image";
 
 export const Card = ({ data, linkText, path }) => {
   const id = data.id;
@@ -12,8 +12,8 @@ export const Card = ({ data, linkText, path }) => {
     <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
       <Link href={`${path}/?id=${id}`} as={`${path}/${id}`}>
         <a>
-          <Image
-            className="object-contain w-full h-48 rounded-t-lg"
+          <img
+            className="object-cover w-full h-48 rounded-t-lg"
             src={imageSrc}
             alt={name}
           />
