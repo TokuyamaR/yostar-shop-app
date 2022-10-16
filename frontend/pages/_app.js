@@ -25,7 +25,6 @@ const App = ({ Component, pageProps }) => {
       }
     }, [router]);
   };
-  console.log("eslint error!");
 
   useAccessControl();
 
