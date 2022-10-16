@@ -57,6 +57,7 @@ const Login = () => {
             >
               ログイン
             </button>
+            <Link href="/register">新規登録はこちら</Link>
           </div>
         </div>
       </section>
