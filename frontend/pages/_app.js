@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Head from "next/head";
 import { Layout } from "../components/Layout";
 import "../styles/globals.css";
@@ -7,10 +7,26 @@ import { ApolloProvider } from "@apollo/client";
 import { AppContext } from "../context/AppContext";
 import Cookies from "js-cookie";
 import { API_URL } from "../config";
+import { useRouter } from "next/router";
+import { isLoggedIn } from "../utils/isLoggedIn";
 
-export default function App({ Component, pageProps }) {
+const App = ({ Component, pageProps }) => {
   const [user, setUser] = useState(null);
   const client = createApolloClient();
+
+  const useAccessControl = () => {
+    const router = useRouter();
+    useEffect(() => {
+      if (/^\/(login|register)/.test(router.asPath) && isLoggedIn()) {
+        router.replace("/");
+      }
+      if (!/^\/(login|register)/.test(router.asPath) && !isLoggedIn()) {
+        router.replace("/login");
+      }
+    }, [router]);
+  };
+
+  useAccessControl();
 
   useEffect(() => {
     const token = Cookies.get("token");
@@ -28,7 +44,7 @@ export default function App({ Component, pageProps }) {
           setUser(res);
         })
         .catch((error) => {
-          alert("App useEffect:", error.message);
+          alert("user fetch error:", error.message);
         });
     }
   }, []);
@@ -43,4 +59,6 @@ export default function App({ Component, pageProps }) {
       </ApolloProvider>
     </AppContext.Provider>
   );
-}
+};
+
+export default App;

@@ -43,5 +43,5 @@ export const login = (identifier, password) => {
 
 export const logout = () => {
   Cookies.remove("token");
-  window.location.href = "/";
+  window.location.href = "/login";
 };

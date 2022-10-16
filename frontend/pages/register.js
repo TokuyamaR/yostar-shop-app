@@ -61,6 +61,7 @@ const Register = () => {
             >
               送信
             </button>
+            <Link href="/login">ログインはこちら</Link>
           </div>
         </div>
       </section>
