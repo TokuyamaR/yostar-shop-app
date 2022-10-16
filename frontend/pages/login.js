@@ -10,10 +10,9 @@ const Login = () => {
   const handleLogin = () => {
     login(data.identifier, data.password)
       .then((response) => {
-        console.log("ログイン成功：", response.data.user);
         appContext.setUser(response.data.user);
       })
-      .catch((error) => console.log("エラー内容：", error.response));
+      .catch((error) => alert("handle login error：", error.response));
   };
 
   const handleChange = (event) => {
