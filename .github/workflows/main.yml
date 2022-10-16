@@ -9,4 +9,4 @@ jobs:
       - name: install frontend packages
         run: cd frontend/ && npm install
       - name: lint frontend
-        run: npm run lint
+        run: cd frontend/ && npm run lint
