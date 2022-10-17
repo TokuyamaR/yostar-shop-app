@@ -1,6 +1,7 @@
 import { gql, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { Card } from "../components/Card";
+import { Cart } from "../components/Cart";
 
 const GET_SHOP_ITEMS = gql`
   query ($id: ID!) {
@@ -53,15 +54,18 @@ const Shops = (props) => {
     return (
       <div className="space-y-4">
         <h1 className="text-3xl font-bold">{shopName}</h1>
-        <div className="grid grid-cols-3 gap-4">
-          {items.map((item) => (
-            <Card
-              key={item.id}
-              data={item}
-              linkText="カートに入れる"
-              path="/items"
-            />
-          ))}
+        <div className="flex">
+          <div className="grid grid-cols-3 gap-4">
+            {items.map((item) => (
+              <Card
+                key={item.id}
+                data={item}
+                linkText="カートに入れる"
+                path="/items"
+              />
+            ))}
+          </div>
+          <Cart />
         </div>
       </div>
     );
