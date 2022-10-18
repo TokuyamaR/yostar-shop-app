@@ -12,6 +12,7 @@ import { isLoggedIn } from "../utils/isLoggedIn";
 
 const App = ({ Component, pageProps }) => {
   const [user, setUser] = useState(null);
+  const [cart, setCart] = useState({ items: [], totalPrice: 0 });
   const client = createApolloClient();
 
   const useAccessControl = () => {
@@ -24,6 +25,19 @@ const App = ({ Component, pageProps }) => {
         router.replace("/login");
       }
     }, [router]);
+  };
+
+  const addItem = (item) => {
+    let { items } = cart;
+    const newItem = items.find((i) => i.id === item.id);
+    if (!newItem) {
+      item.quantity = 1;
+      setCart({
+        items: [...items, item],
+        totalPrice: cart.totalPrice + item.price,
+      });
+      Cookies.set("cart", cart.items);
+    }
   };
 
   useAccessControl();
