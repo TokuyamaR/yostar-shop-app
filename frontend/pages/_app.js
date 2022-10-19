@@ -76,7 +76,7 @@ const App = ({ Component, pageProps }) => {
   }, []);
 
   return (
-    <AppContext.Provider value={{ user, setUser }}>
+    <AppContext.Provider value={{ user, setUser, addItem }}>
       <ApolloProvider client={client}>
         <Head></Head>
         <Layout>
