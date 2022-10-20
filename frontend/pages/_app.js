@@ -30,16 +30,16 @@ const App = ({ Component, pageProps }) => {
   const addItem = (item) => {
     let { items } = cart;
     const newItem = items.find((i) => i.id === item.id);
-    // カートに同じ商品がない時
     if (!newItem) {
+      // カートに同じ商品がない時
       item.quantity = 1;
       setCart({
         items: [...items, item],
         totalPrice: cart.totalPrice + item.price,
       });
       Cookies.set("cart", cart.items);
-      // カートに同じ商品がある時
     } else {
+      // カートに同じ商品がある時
       setCart({
         items: cart.items.map((item) => {
           item.id === newItem.id
