@@ -28,11 +28,8 @@ const App = ({ Component, pageProps }) => {
   };
 
   const addItem = (item) => {
-    console.log("item", item);
     let { items } = cart;
-    console.log("cart", cart);
     const newItem = items.find((i) => i.id === item.id);
-    console.log("newItem", newItem);
     if (!newItem) {
       // カートに同じ商品がない時
       item.quantity = 1;
@@ -40,21 +37,19 @@ const App = ({ Component, pageProps }) => {
         items: [...items, item],
         totalPrice: cart.totalPrice + item.price,
       });
-      console.log("item", item);
       Cookies.set("cart", cart.items);
-      console.log("cart items", cart.items);
     } else {
       // カートに同じ商品がある時
       setCart({
-        items: cart.items.map((item) => {
-          console.log(item) || item.id === newItem.id
-            ? Object.assign({}, item, { quantity: item.quantity + 1 })
-            : item;
-        }),
+        items: cart.items.map((item) =>
+          item.id === newItem.id
+            ? //もしすでにあるなら
+              Object.assign({}, item, { quantity: item.quantity + 1 })
+            : item
+        ),
         totalPrice: cart.totalPrice + item.price,
       });
       Cookies.set("cart", cart.items);
-      console.log("cart items", cart.items);
     }
   };
 
