@@ -28,26 +28,50 @@ const App = ({ Component, pageProps }) => {
   };
 
   const addItem = (item) => {
-    let { items } = cart;
+    let { items, totalPrice } = cart;
     const newItem = items.find((i) => i.id === item.id);
     if (!newItem) {
       // カートに同じ商品がない時
       item.quantity = 1;
       setCart({
         items: [...items, item],
-        totalPrice: cart.totalPrice + item.price,
+        totalPrice: totalPrice + item.price,
       });
       Cookies.set("cart", cart.items);
     } else {
       // カートに同じ商品がある時
       setCart({
-        items: cart.items.map((item) =>
+        items: items.map((item) =>
           item.id === newItem.id
             ? //もしすでにあるなら
               Object.assign({}, item, { quantity: item.quantity + 1 })
             : item
         ),
-        totalPrice: cart.totalPrice + item.price,
+        totalPrice: totalPrice + item.price,
+      });
+      Cookies.set("cart", cart.items);
+    }
+  };
+
+  const removeItem = (item) => {
+    let { items, totalPrice } = cart;
+    const selectedItem = items.find((i) => i.id === item.id);
+    if (item.quantity > 1) {
+      setCart({
+        items: items.map((item) =>
+          item.id === selectedItem.id
+            ? Object.assign({}, item, { quantity: item.quantity - 1 })
+            : item
+        ),
+        totalPrice: totalPrice - item.price,
+      });
+      Cookies.set("cart", cart.items);
+    } else {
+      const index = items.findIndex((item) => item.id === selectedItem.id);
+      items.splice(index, 1);
+      setCart({
+        items,
+        totalPrice: totalPrice - item.price,
       });
       Cookies.set("cart", cart.items);
     }
@@ -77,7 +101,7 @@ const App = ({ Component, pageProps }) => {
   }, []);
 
   return (
-    <AppContext.Provider value={{ user, setUser, addItem, cart }}>
+    <AppContext.Provider value={{ user, setUser, addItem, removeItem, cart }}>
       <ApolloProvider client={client}>
         <Head></Head>
         <Layout>

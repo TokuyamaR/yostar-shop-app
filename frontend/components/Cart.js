@@ -3,7 +3,7 @@ import { AppContext } from "../context/AppContext";
 import { useDisabled } from "../hooks/useDisabled";
 
 export const Cart = () => {
-  const { addItem, cart } = useContext(AppContext);
+  const { addItem, removeItem, cart } = useContext(AppContext);
   const { isDisabled, disable, enable } = useDisabled();
 
   useEffect(() => {
@@ -33,7 +33,12 @@ export const Cart = () => {
                       >
                         +
                       </button>
-                      <button className="px-2 bg-gray-200 rounded">-</button>
+                      <button
+                        className="px-2 bg-gray-200 rounded"
+                        onClick={() => removeItem(item)}
+                      >
+                        -
+                      </button>
                       <span>数量：{item.quantity}</span>
                     </div>
                   </div>
