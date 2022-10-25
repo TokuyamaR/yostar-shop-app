@@ -37,6 +37,9 @@
       "relation": "manyToOne",
       "target": "api::shop.shop",
       "inversedBy": "items"
+    },
+    "quantity": {
+      "type": "integer"
     }
   }
 }

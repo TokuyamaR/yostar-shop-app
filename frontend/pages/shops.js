@@ -17,6 +17,7 @@ const GET_SHOP_ITEMS = gql`
                 name
                 description
                 price
+                quantity
                 image {
                   data {
                     attributes {
@@ -59,8 +60,9 @@ const Shops = (props) => {
             {items.map((item) => (
               <Card
                 key={item.id}
-                data={item}
-                linkText="カートに入れる"
+                data={{ ...item.attributes, id: item.id }}
+                actionType="button"
+                text="カートに入れる"
                 path="/items"
               />
             ))}

@@ -39,7 +39,12 @@ export const ShopList = (props) => {
     return (
       <div className="grid grid-cols-3 gap-4">
         {filteredShops.map((shop) => (
-          <Card key={shop.id} data={shop} linkText="もっとみる" path="/shops" />
+          <Card
+            key={shop.id}
+            data={{ ...shop.attributes, id: shop.id }}
+            text="もっとみる"
+            path="/shops"
+          />
         ))}
       </div>
     );
