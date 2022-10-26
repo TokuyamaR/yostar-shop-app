@@ -33,47 +33,49 @@ const App = ({ Component, pageProps }) => {
     if (!newItem) {
       // カートに同じ商品がない時
       item.quantity = 1;
+      const newCartItems = [...items, item];
       setCart({
-        items: [...items, item],
+        items: newCartItems,
         totalPrice: totalPrice + item.price,
       });
-      Cookies.set("cart", cart.items);
+      Cookies.set("cart", JSON.stringify(newCartItems));
     } else {
       // カートに同じ商品がある時
+      const newCartItems = items.map((item) =>
+        item.id === newItem.id
+          ? Object.assign({}, item, { quantity: item.quantity + 1 })
+          : item
+      );
       setCart({
-        items: items.map((item) =>
-          item.id === newItem.id
-            ? //もしすでにあるなら
-              Object.assign({}, item, { quantity: item.quantity + 1 })
-            : item
-        ),
+        items: newCartItems,
         totalPrice: totalPrice + item.price,
       });
-      Cookies.set("cart", cart.items);
+      Cookies.set("cart", JSON.stringify(newCartItems));
     }
   };
 
   const removeItem = (item) => {
     let { items, totalPrice } = cart;
-    const selectedItem = items.find((i) => i.id === item.id);
+    const newItem = items.find((i) => i.id === item.id);
     if (item.quantity > 1) {
+      const newCartItems = items.map((item) =>
+        item.id === newItem.id
+          ? Object.assign({}, item, { quantity: item.quantity - 1 })
+          : item
+      );
       setCart({
-        items: items.map((item) =>
-          item.id === selectedItem.id
-            ? Object.assign({}, item, { quantity: item.quantity - 1 })
-            : item
-        ),
+        items: newCartItems,
         totalPrice: totalPrice - item.price,
       });
-      Cookies.set("cart", cart.items);
+      Cookies.set("cart", JSON.stringify(newCartItems));
     } else {
-      const index = items.findIndex((item) => item.id === selectedItem.id);
+      const index = items.findIndex((item) => item.id === newItem.id);
       items.splice(index, 1);
       setCart({
         items,
         totalPrice: totalPrice - item.price,
       });
-      Cookies.set("cart", cart.items);
+      Cookies.set("cart", JSON.stringify(items));
     }
   };
 
@@ -81,6 +83,17 @@ const App = ({ Component, pageProps }) => {
 
   useEffect(() => {
     const token = Cookies.get("token");
+    const cartValue = Cookies.get("cart");
+
+    if (cartValue !== undefined) {
+      JSON.parse(cartValue).forEach((item) => {
+        setCart({
+          items: JSON.parse(cartValue),
+          totalPrice: (cart.totalPrice += item.price * item.quantity),
+        });
+      });
+    }
+
     if (token) {
       fetch(`${API_URL}/api/users/me`, {
         headers: { Authorization: "Bearer " + token },

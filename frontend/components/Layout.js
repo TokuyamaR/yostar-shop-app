@@ -5,7 +5,7 @@ import { AppContext } from "../context/AppContext";
 import { logout } from "../lib/auth";
 
 export const Layout = (props) => {
-  const { user, setUser } = useContext(AppContext);
+  const { user } = useContext(AppContext);
   return (
     <div>
       <Head>
