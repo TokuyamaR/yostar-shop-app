@@ -19,5 +19,15 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
       source: token,
       description: `Ordered at ${new Date()} by ${ctx.state.user._id}`,
     });
+
+    const order = strapi.services.create({
+      user: ctx.state.user._id,
+      charge_id: charge.id,
+      amount,
+      address,
+      items,
+    });
+
+    return order;
   },
 }));
