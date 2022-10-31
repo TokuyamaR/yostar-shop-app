@@ -1,10 +1,41 @@
+ import { useState, useContext } from "react";
 import { CreditPaymentSection } from "./CreditPaymentSection";
-import { Elements } from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
-import { STRIPE_PUBLISHABLE_KEY } from "../config";
+import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
+import Cookies from "js-cookie";
+import { AppContext } from "../context/AppContext";
+import { API_URL } from "../config";
 
-const stripePromise = loadStripe(STRIPE_PUBLISHABLE_KEY);
 export const CheckoutForm = () => {
+  const { cart } = useContext(AppContext);
+  const userToken = Cookies.get("token");
+  const [address, setAddress] = useState("");
+  const stripe = useStripe();
+  const elements = useElements();
+
+  const handleChange = (e) => {
+    setAddress(e.target.value);
+  };
+
+  const confirmOrder = async () => {
+    const cardElement = elements.getElement(CardElement);
+    const token = await stripe.createToken(cardElement);
+    const response = await fetch(`${API_URL}/orders`, {
+      method: "POST",
+      headers: userToken && { Authorization: `Bearer ${userToken}` },
+      body: JSON.stringify({
+        amount: Number(cart.totalPrice),
+        items: cart.items,
+        address: address,
+        token: token.token.id,
+      }),
+    });
+
+    if (response.ok) {
+      console.log("注文成功");
+    } else {
+      console.log("注文失敗");
+    }
+  };
   return (
     <div className="bg-white border border-gray-200 rounded-lg shadow-md w-80 h-fit">
       <h3 className="p-4 text-lg border-b border-gray-200">決済情報</h3>
@@ -16,19 +47,10 @@ export const CheckoutForm = () => {
               type="text"
               className="w-full p-1 border border-gray-300 rounded"
               placeholder="東京都港区六本木３丁目２−１"
+              onChange={(e) => handleChange(e)}
             />
           </label>
-          <Elements stripe={stripePromise}>
-            <CreditPaymentSection />
-          </Elements>
-          <div className="text-right">
-            <button
-              type="submit"
-              className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-400 rounded hover:bg-red-300 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
-              注文を確認
-            </button>
-          </div>
+          <CreditPaymentSection confirmOrder={confirmOrder} />
         </form>
       </div>
     </div>
