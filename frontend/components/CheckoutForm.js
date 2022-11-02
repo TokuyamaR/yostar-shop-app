@@ -1,4 +1,4 @@
- import { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { CreditPaymentSection } from "./CreditPaymentSection";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import Cookies from "js-cookie";
@@ -31,9 +31,9 @@ export const CheckoutForm = () => {
     });
 
     if (response.ok) {
-      console.log("注文成功");
+      alert("注文成功");
     } else {
-      console.log("注文失敗");
+      alert("注文失敗");
     }
   };
   return (
