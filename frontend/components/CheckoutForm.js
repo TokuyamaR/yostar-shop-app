@@ -7,7 +7,6 @@ import { API_URL } from "../config";
 
 export const CheckoutForm = () => {
   const { cart } = useContext(AppContext);
-  const userToken = Cookies.get("token");
   const [address, setAddress] = useState("");
   const stripe = useStripe();
   const elements = useElements();
@@ -19,6 +18,7 @@ export const CheckoutForm = () => {
   const confirmOrder = async () => {
     const cardElement = elements.getElement(CardElement);
     const token = await stripe.createToken(cardElement);
+    const userToken = Cookies.get("token");
     const response = await fetch(`${API_URL}/orders`, {
       method: "POST",
       headers: userToken && { Authorization: `Bearer ${userToken}` },
