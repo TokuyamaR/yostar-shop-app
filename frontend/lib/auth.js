@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 export const registerUser = (username, email, password) => {
   return new Promise((resolve, reject) => {
     axios
-      .post(`${API_URL}/api/auth/local/register`, {
+      .post(`${API_URL}/auth/local/register`, {
         username,
         email,
         password,
@@ -25,7 +25,7 @@ export const registerUser = (username, email, password) => {
 export const login = (identifier, password) => {
   return new Promise((resolve, reject) => {
     axios
-      .post(`${API_URL}/api/auth/local`, {
+      .post(`${API_URL}/auth/local`, {
         identifier,
         password,
       })

@@ -95,7 +95,7 @@ const App = ({ Component, pageProps }) => {
     }
 
     if (token) {
-      fetch(`${API_URL}/api/users/me`, {
+      fetch(`${API_URL}/users/me`, {
         headers: { Authorization: "Bearer " + token },
       })
         .then(async (response) => {
