@@ -15,7 +15,7 @@ export const CheckoutForm = () => {
     setAddress(e.target.value);
   };
 
-  const confirmOrder = async () => {
+  const checkoutOrder = async () => {
     const cardElement = elements.getElement(CardElement);
     const token = await stripe.createToken(cardElement);
     const userToken = Cookies.get("token");
@@ -50,7 +50,7 @@ export const CheckoutForm = () => {
               onChange={(e) => handleChange(e)}
             />
           </label>
-          <CreditPaymentSection confirmOrder={confirmOrder} />
+          <CreditPaymentSection checkoutOrder={checkoutOrder} />
         </form>
       </div>
     </div>
