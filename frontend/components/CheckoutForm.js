@@ -8,6 +8,8 @@ import { API_URL } from "../config";
 export const CheckoutForm = () => {
   const { cart } = useContext(AppContext);
   const [address, setAddress] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   const stripe = useStripe();
   const elements = useElements();
 
@@ -31,9 +33,9 @@ export const CheckoutForm = () => {
     });
 
     if (response.ok) {
-      alert("注文成功");
+      setSuccessMessage("注文成功");
     } else {
-      alert("注文失敗");
+      setErrorMessage("注文失敗");
     }
   };
   return (
