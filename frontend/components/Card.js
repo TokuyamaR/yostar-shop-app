@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { API_URL } from "../config";
+import { APP_URL } from "../config";
 import RightArrow from "../public/images/arrow-right.svg";
 import Link from "next/link";
 import { useContext } from "react";
@@ -7,7 +7,7 @@ import { AppContext } from "../context/AppContext";
 
 export const Card = ({ data, actionType = "link", text, path }) => {
   const { id, name, description, image } = data;
-  const imageSrc = `${API_URL}${image.data.attributes.url}`;
+  const imageSrc = `${APP_URL}${image.data.attributes.url}`;
   const { addItem } = useContext(AppContext);
 
   return (

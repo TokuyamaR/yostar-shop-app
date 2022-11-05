@@ -21,42 +21,48 @@ const Login = () => {
   return (
     <div className="space-y-4">
       <section>
-        <div className="flex flex-col w-2/5 m-auto space-y-4">
-          <h2 className="text-2xl text-center">ログイン</h2>
-          <label className="flex flex-col">
-            <span>メールアドレス</span>
-            <input
-              type="email"
-              name="identifier"
-              className="p-1 border border-gray-400"
-              onChange={(e) => handleChange(e)}
-            />
-          </label>
-          <label className="flex flex-col">
-            <span>パスワード</span>
-            <input
-              type="password"
-              name="password"
-              className="p-1 border border-gray-400"
-              onChange={(e) => handleChange(e)}
-            />
-          </label>
-          <div className="flex justify-between">
-            <p className="text-sm">
-              <Link href="/">
-                <a className="text-blue-link hover:underline">
-                  パスワードをお忘れの方
-                </a>
-              </Link>
-            </p>
-            <button
-              type="submit"
-              className="w-24 p-2 text-white bg-blue-600 rounded hover:opacity-80"
-              onClick={() => handleLogin()}
-            >
-              ログイン
-            </button>
-            <Link href="/register">新規登録はこちら</Link>
+        <div className="w-2/5 m-auto space-y-2">
+          <div className="flex flex-col p-4 space-y-4 border border-gray-300 rounded">
+            <h2 className="text-2xl text-center">ログイン</h2>
+            <label className="flex flex-col">
+              <span>メールアドレス</span>
+              <input
+                type="email"
+                name="identifier"
+                className="p-1 border border-gray-400"
+                onChange={(e) => handleChange(e)}
+              />
+            </label>
+            <label className="flex flex-col">
+              <span>パスワード</span>
+              <input
+                type="password"
+                name="password"
+                className="p-1 border border-gray-400"
+                onChange={(e) => handleChange(e)}
+              />
+            </label>
+            <div className="flex justify-between">
+              <p className="text-sm">
+                <Link href="/">
+                  <a className="text-blue-link hover:underline">
+                    パスワードをお忘れの方
+                  </a>
+                </Link>
+              </p>
+              <button
+                type="submit"
+                className="w-24 p-2 text-white bg-blue-600 rounded hover:opacity-80"
+                onClick={() => handleLogin()}
+              >
+                ログイン
+              </button>
+            </div>
+          </div>
+          <div>
+            <Link href="/register">
+              <a className="text-blue-link hover:underline">新規登録はこちら</a>
+            </Link>
           </div>
         </div>
       </section>

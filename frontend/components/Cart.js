@@ -1,4 +1,5 @@
-import { useContext, useState, useEffect } from "react";
+import Link from "next/link";
+import { useContext, useEffect } from "react";
 import { AppContext } from "../context/AppContext";
 import { useDisabled } from "../hooks/useDisabled";
 
@@ -52,14 +53,16 @@ export const Cart = () => {
               <span>{`${cart.totalPrice}円`}</span>
             </div>
             <div className="text-right">
-              <button
-                disabled={isDisabled}
-                className={`px-4 py-2 text-white bg-blue-600 rounded hover:opacity-80 ${
-                  isDisabled ? "bg-gray-200" : ""
-                }`}
-              >
-                注文する
-              </button>
+              <Link href="/checkout">
+                <a
+                  disabled={isDisabled}
+                  className={`px-4 py-2 text-white bg-blue-600 rounded hover:opacity-80 ${
+                    isDisabled ? "bg-gray-200" : ""
+                  }`}
+                >
+                  注文する
+                </a>
+              </Link>
             </div>
           </div>
         </>
