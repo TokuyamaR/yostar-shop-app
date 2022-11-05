@@ -8,8 +8,7 @@ import { API_URL } from "../config";
 export const CheckoutForm = () => {
   const { cart } = useContext(AppContext);
   const [address, setAddress] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
+  const [isPaymentSuccess, setIsPaymentSuccess] = useState(undefined);
   const stripe = useStripe();
   const elements = useElements();
 
@@ -21,22 +20,28 @@ export const CheckoutForm = () => {
     const cardElement = elements.getElement(CardElement);
     const token = await stripe.createToken(cardElement);
     const userToken = Cookies.get("token");
-    const response = await fetch(`${API_URL}/orders`, {
+    await fetch(`${API_URL}/orders`, {
       method: "POST",
       headers: userToken && { Authorization: `Bearer ${userToken}` },
       body: JSON.stringify({
         amount: Number(cart.totalPrice),
         items: cart.items,
         address: address,
-        token: token.token.id,
+        token: token.token
+          ? token.token.id
+          : setIsPaymentSuccess(token.error.message),
       }),
-    });
-
-    if (response.ok) {
-      setSuccessMessage("注文成功");
-    } else {
-      setErrorMessage("注文失敗");
-    }
+    })
+      .then((response) => {
+        if (response.ok) {
+          setIsPaymentSuccess(true);
+        } else {
+          setIsPaymentSuccess(false);
+        }
+      })
+      .catch((error) => {
+        alert("通信に失敗しました", error);
+      });
   };
   return (
     <div className="bg-white border border-gray-200 rounded-lg shadow-md w-80 h-fit">
@@ -52,7 +57,10 @@ export const CheckoutForm = () => {
               onChange={(e) => handleChange(e)}
             />
           </label>
-          <CreditPaymentSection checkoutOrder={checkoutOrder} />
+          <CreditPaymentSection
+            checkoutOrder={checkoutOrder}
+            isPaymentSuccess={isPaymentSuccess}
+          />
         </form>
       </div>
     </div>

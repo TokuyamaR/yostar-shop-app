@@ -2,7 +2,7 @@ import { CardElement } from "@stripe/react-stripe-js";
 
 export const CreditPaymentSection = (props) => {
   return (
-    <div>
+    <div className="space-y-4">
       <label>
         <p className="text-gray-500">クレジット/デビットカード</p>
         <div className="p-1 border border-gray-300 rounded">
@@ -17,6 +17,12 @@ export const CreditPaymentSection = (props) => {
         >
           注文を確認
         </button>
+        {props.isPaymentSuccess !== undefined &&
+          (props.isPaymentSuccess !== true ? (
+            <p className="font-bold text-red-500">決済失敗</p>
+          ) : (
+            <p className="font-bold text-green-500">決済成功</p>
+          ))}
       </div>
     </div>
   );
