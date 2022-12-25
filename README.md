@@ -8,11 +8,11 @@
 - 決済
 
 ## 利用技術
-### Front
+### Frontend
 - Next.js
 - TailwindCSS
 
-### Back
+### Backend
 - Strapi
 
 ### APi
